@@ -147,4 +147,142 @@ label:for(int i=0;i<10;++i){
 - 作用相当于goto
 - 但保留了程序结构化的特性
 
+------
+
+## 字符串
+
+### String类
+
+- String类是不可变类，一旦String对象被创建之后，包含这个对象中国呢的字符序列是不可变的，直至这个对象被销毁
+- 由于不可变性，拼接字符串时会产生很多无用的中间对象，对性能有影响
+
+#### 定义
+
+- 直接定义：
+
+  ```java
+  String str = "hello world";
+  
+  String str2;
+  str2 = "你好";
+  ```
+
+- 使用String类定义
+
+  - String(): 创建空的String对象
+  - String(String origin)：target与origin是相等的
+  - String(char[] chi)：将字符数组复制变为字符串
+    - 可以指定起始位置和总长度
+
+#### 库函数
+
+- **字符串连接：**+
+
+- **字符串长度：**`length()`
+
+- **去除空格：**`trim()`
+
+- **提取子串：**`substring(int begin, int end)`
+
+- **分隔字符串：**`split(String sign, int limit)`
+
+  - `limit`: 分隔的次数，达到limit后其他部分不再划分
+
+  ```java
+  String colors = "red,yellow,blue,green,pink";
+  String[] subcolors = colors.split(",", 3);
+  for(String color : subcolors){
+    System.out.println(color);
+  }
+  /*
+  red
+  yellow
+  blue,green,pink
+  */
+  ```
+
+- **字符串比较：**
+
+  - `str1.equals(str2)`: 字符串要求逐字符完全相同
+  - `equalsIgnoreCase()`: 忽略大小写
+  - `compareTo()`: 返回一个整数（负，0，正）
+
+- **替换：**
+
+  - `replace(String oldstr, String newstr)`: 将指定字符串都替换成目标字符串
+  - `replaceFirst(String regx, String replacement)`：匹配正则表达式的第一个字符串替换成新的字符串
+  - `replaceAll(String regx, String replacement)`：匹配正则表达式的所有字符串都被替换
+
+- **查找：**
+
+  - `indexOf(value, int startpos)`: 如果找到返回索引值；没找到返回-1
+  - `lastIndexOf()`
+
+### StringBuffer类
+
+- 更高效
+- 可变字符串类，创建对象后可以修改字符串的内容
+- 对象的容量会自动扩大
+
+#### 创建
+
+- `StringBuffer(int length)`: 创建空的字符串缓冲区，默认大小为16个字符
+- `StringBuffer(String str)`: 内容初始化为指定的字符串内容，缓冲区容量为`16 + str`的长度
+
+#### 库函数
+
+- `capacity(): `返回字符串的容量大小
+- `append(String str | StringBuffer sb)`：追加字符串
+- `setCharAt(int index, char ch)`: 在指定索引位置替换一个字符
+- `reverse()`: 反转**（直接修改对象本身，返回值也是反转后的StringBuffer对象）**
+- **删除：**
+  - `deleteCharAt(int index)`
+  - `delete(int start, int end)`: 删除[start, end)的字符
+
+### StringBuilder类
+
+- 与StringBuffer基本类似
+- 没有实现线程安全功能，性能略高
+  - 单线程时使用StringBuilder
+  - 多线程时使用StringBuffer
+
+------
+
+## 正则表达式
+
+- `boolean match(String regex)`: 判断该字符串是否匹配指定的正则表达式
+- `replaceAll(String regex, String replacement)`: 将所有匹配正则表达式的子串替换为另一个字符串
+- `split(String regex)`: 以正则表达式作为分隔符，分隔字符串为多个子串
+
+### Pattern类和Matcher类
+
+- Pattern对象时正则表达式编译后在内存中的形式
+- 正则表达式字符串：被编译为Pattern对象 -> 用该Pattern对象创建Matcher对象 -> 执行匹配涉及的状态保留在Matcher对象中
+- 多个Matcher对象可共享同一个Pattern对象
+
+```java
+//将一个正则表达式字符串编译为Pattern对象
+Pattern p = attern.compile("a*b");
+//使用Pattern对象创建Matcher对象
+Matcher m = p.matcher("aaab");
+boolean flag = m.matches();
+```
+
+- 如果某个正则表达式仅需使用一次，可以直接使用Pattern类的静态matches方法
+- 但这种方法每次都要重新编译新的Pattern对象，效率不高
+
+```java
+boolean flag = Pattern.matches("a*b", "aaaaab");
+```
+
+#### 提取指定子串
+
+```java
+while(m.find()){		//一次查找与Pattern匹配的子串，下次调用时会接着向下查找
+  m.group()			//目标子串
+  m.start()			//该子串的起始位置
+  m.end()				//该子串的结束位置
+}
+```
+
 
