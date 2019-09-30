@@ -285,4 +285,153 @@ while(m.find()){		//一次查找与Pattern匹配的子串，下次调用时会�
 }
 ```
 
+------
 
+## 数字处理
+
+- `Math.E`
+- `Math.PI`
+- `Math.max(x, y)`
+- **取整：**
+  - `Math.rint(double num)`: 返回最接近num的整数，如果有两个相同接近的，取偶数
+  - `Math.round(double num)`: 返回加上1/2后最近的整数
+- **三角函数：**
+  - `Math.toDegrees(double angrad)`: 弧度 -> 角度
+  - `Math.toRadians(double angdeg)`: 角度 -> 弧度
+  - $180^。$ -> $\pi$
+  - 其他三角函数参数默认都是弧度
+- **指数运算：**
+  - `cbrt(double a)`: a的立方根
+
+### 随机数 | Random类
+
+**构造方法：**
+
+- `Random()`: 使用当前系统时间作为种子
+- `Random(long seed)`
+- 种子相同的Random类是相同的
+
+```java
+Random r1 = new Random(1);
+Random r2 = new Random(2);
+r2.setSeed(1);
+
+//产生的随机数是一样的
+System.out.println(r1.nextInt());
+System.out.println(r2.nextInt());
+```
+
+**产生随机数：**
+
+- Random类的所有方法生成的随机数都是均匀分布的
+- `nextBoolean()`: 生成true和false的概率相等
+- `nextDouble()`: [0, 1.0)
+- `nextInt(int n)`: [0, n)
+- `Math.random()`: 产生[0, 1.0)之间的随机数
+
+### 数字格式化 | DedmalFormat类
+
+| 符号 | 说明                                                         |
+| ---- | ------------------------------------------------------------ |
+| 0    | 显示数字，如果位数不够则补 0                                 |
+| #    | 显示数字，如果位数不够不发生变化                             |
+| .    | 小数分隔符                                                   |
+| -    | 减号                                                         |
+| ,    | 组分隔符                                                     |
+| E    | 分隔科学记数法中的尾数和小数                                 |
+| %    | 前缀或后缀，乘以 100 后作为百分比显示                        |
+| ?    | 乘以 1000 后作为千进制货币符显示。用货币符号代替。如果双写，用国际货币符号代替； 如果出现在一个模式中，用货币十进制分隔符代替十进制分隔符 |
+
+```java
+DecimalFormat df = new DecimalFormat("0.00");		//保留两位小数（四舍五入）
+double num = 123.456;
+df.format(num);				//123.46
+```
+
+### 大数运算 | BigInteger BigDecimal
+
+**构造方法：**
+
+- `BigInteger(String val)`
+
+**运算：**
+
+| 方法名称                  | 说明                                                         |
+| ------------------------- | ------------------------------------------------------------ |
+| add(BigInteger val)       | 做加法运算                                                   |
+| subtract(BigInteger val)  | 做减法运算                                                   |
+| multiply(BigInteger val)  | 做乘法运算                                                   |
+| divide(BigInteger val)    | 做除法运算                                                   |
+| remainder(BigInteger val) | 做取余数运算                                                 |
+| compareTo(BigInteger val) | 做数字的比较运算                                             |
+| equals(Object obj)        | 当参数 obj 是 Biglnteger 类型的数字并且数值相等时返回 true, 其他返回 false |
+
+```java
+BigInteger bi1 = new BigInteger("1234567890");
+BigInteger bi2 = new BigInteger("9876543210");
+
+bi1.add(bi2)
+```
+
+- `divide(BigDecimal divisor, int scale, int roundingMode)`
+
+  - `scale`: 商小数点后的位数
+
+  - `roundingMode`
+
+    | 模式名称                    | 说明                                                         |
+    | --------------------------- | ------------------------------------------------------------ |
+    | BigDecimal.ROUND_DOWN       | 商的最后一位无论是什么数字都省略                             |
+    | BigDecimal.ROUND_CEILING    | 商如果是正数，按照 ROUND_UP 模式处理；如果是负数，按照 ROUND_DOWN 模式处理 |
+    | BigDecimal.ROUND_HALF_ DOWN | 对商进行五舍六入操作。如果商最后一位小于等于 5，则做舍弃操作，否则对最后 一位进行进位操作 |
+    | BigDecimal.ROUND_HALF_EVEN  | 如果商的倒数第二位是奇数，则按照 ROUND_HALF_UP 处理；如果是偶数，则按 照 ROUND_HALF_DOWN 处理 |
+
+------
+
+## 日期类
+
+### Date类
+
+- 获取系统的时间信息
+- 顺序：星期、月、日、小时、分、秒、年
+
+**方法：**
+
+- `after(Date when)`: 此日期是否在指定日期之后
+- `before(Date when)`
+- `toString()`: 将Date对象转换为格式：[dow mon dd hh:mm:ss zzz yyyy]
+
+### Calendar类
+
+- 抽象类，不能使用new
+- 处理日期时间，操作日历
+
+**创建：**
+
+```java
+Calendar c = Calendar.getInstance();
+```
+
+**方法：**
+
+- `add(int field, int amount)`: 为指定的日期字段field添加时间量amount
+- `set(int uear, int month, int data ...)`: 将日历翻到任何一个时间
+- `get(Calendar.MONTH)`: 获取日历中的月份
+
+### 日期格式化 | DateFormat SimpleDateFormat
+
+#### DateFormat
+
+- 抽象类，不能使用new
+- 以语言无关的方式格式化并解析日期/时间
+
+**方法：**
+
+- `String format(Date date)`: 格式化日期/时间
+- `Calendar getCalendar()`: 获取与此时间格式相关联的日历
+- `Date parse(String source)`：将给定的字符串解析为日期/时间
+
+#### SimpleDateFormat
+
+- 格式化：日期 -> 文本
+- 解析：文本 -> 日期
