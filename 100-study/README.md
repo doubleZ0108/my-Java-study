@@ -431,7 +431,73 @@ Calendar c = Calendar.getInstance();
 - `Calendar getCalendar()`: 获取与此时间格式相关联的日历
 - `Date parse(String source)`：将给定的字符串解析为日期/时间
 
+```java
+DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CHINA);
+String date = df.format(new Date());
+```
+
+```java
+DateFormat df = DateFormat.getTimeInstance(DateFormat.FULL, Locale.CHINA);
+String time = df.format(new Date());
+```
+
 #### SimpleDateFormat
 
-- 格式化：日期 -> 文本
-- 解析：文本 -> 日期
+- **格式化：**日期 -> 文本
+- **解析：**文本 -> 日期
+
+**构造方法：**
+
+- `SimpleDateFormat(String pattern, Locale locale)`
+  - pattern：指定格式
+  - locale：指定语言环境
+
+| 字母 | 含义                           | 示例                                                         |
+| ---- | ------------------------------ | ------------------------------------------------------------ |
+| y    | 年份。                         | yy：11<br />yyyy： 2011                                      |
+| M    | 月份。                         | MM ：05<br />MMM ：Locale.CHINA 语言环境下，如“十月”；在 Locale.US 语言环境下，如 Oct |
+| d    | 月份中的天数                   | dd ： 10                                                     |
+| D    | 当天是当年的第几天， 用 D 表示 | D ：295                                                      |
+| E    | 星期                           | 使E ：Locale.CHINA 语 言环境下，如“星期四”；在 Locale.US 语 言环境下，如 Thu |
+| H    | 小时数（0~23)                  | HH： 18                                                      |
+| h    | 小时数（1~12)                  | hh： 10 (注意 10 有 可能是 10 点，也可能是 22 点）           |
+| m    | 分钟数                         | mm：29                                                       |
+| s    | 秒数                           | ss： 38                                                      |
+| S    | 毫秒数                         | SSS：156                                                     |
+
+```java
+Date date = new Date();
+SimpleDateFormat sd = new SimpleDateFormat("「现在是 yyyy年-MM月-dd日 E HH:mm:ss:SSS」");
+System.out.println(sd.format(date));
+```
+
+------
+
+## 包装类
+
+### Object类
+
+- 所有类的父类
+
+**方法：**
+
+| 方法                   | 说明                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| Object clone()         | 创建与该对象的类相同的新对象                                 |
+| boolean equals(Object) | 比较两对象是否相等                                           |
+| Class getClass()       | 返回对象所属的类，是一个Class对象，通过该对象可以获取该类的各种信息 |
+| void notify()          | 激活等待在该对象的监视器上的一个线程                         |
+| String toString()      | 返回该对象的字符串表示                                       |
+
+```java
+boolean result = thisobj.equals(anotherobj);
+
+Class class = obj.getClass();
+class.getName()		//类名
+getSuperclass().getName()		//父类名
+for(int i=0;i<class.getInterfaces().length;++i){
+  class.getInterfaces()[i];		//实现的接口
+}
+```
+
+
