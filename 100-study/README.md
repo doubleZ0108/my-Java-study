@@ -483,21 +483,59 @@ System.out.println(sd.format(date));
 
 | 方法                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
-| Object clone()         | 创建与该对象的类相同的新对象                                 |
 | boolean equals(Object) | 比较两对象是否相等                                           |
-| Class getClass()       | 返回对象所属的类，是一个Class对象，通过该对象可以获取该类的各种信息 |
-| void notify()          | 激活等待在该对象的监视器上的一个线程                         |
 | String toString()      | 返回该对象的字符串表示                                       |
+| Class getClass()       | 返回对象所属的类，是一个Class对象，通过该对象可以获取该类的各种信息 |
+| Object clone()         | 创建与该对象的类相同的新对象                                 |
+| void notify()          | 激活等待在该对象的监视器上的一个线程                         |
 
 ```java
 boolean result = thisobj.equals(anotherobj);
 
-Class class = obj.getClass();
-class.getName()		//类名
+Class c = obj.getClass();
+c.getName()		//类名
 getSuperclass().getName()		//父类名
-for(int i=0;i<class.getInterfaces().length;++i){
+for(int i=0;i<c.getInterfaces().length;++i){
   class.getInterfaces()[i];		//实现的接口
 }
+/*
+[Output] (String Object)
+java.lang.String
+java.lang.Object
+interface java.io.Serializable
+interface java.lang.Comparable
+interface java.lang.CharSequence
+*/
 ```
+
+------
+
+### Integer类
+
+**构造方法：**
+
+- `Integer(int num)`
+- `Integer(String str_num)`
+
+**方法：**
+
+- `byteValue()`: 以byte类型返回该Integer的值(是byte类型，不是返回这个字节)
+- `Integer.parseInt(String str_num)`: 将数字字符串转换为int数值
+- `Integer.toBinaryString(num)`, ``Integer.toHexString(num)`, ``Integer.toOctalString(num)`
+
+------
+
+### Float类
+
+**方法：**
+
+- `toNaN()`: 判断此Float值是不是一个非数字值
+
+------
+
+### Character类
+
+- `isDigit(ch)`, `isLetter(ch)`, `isLetterOrDigit(ch)`, `isLowerCase(ch)`
+- `toLowerCase(ch)`
 
 
