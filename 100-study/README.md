@@ -529,7 +529,7 @@ interface java.lang.CharSequence
 
 **方法：**
 
-- `toNaN()`: 判断此Float值是不是一个非数字值
+- `isNaN()`: 判断此Float值是不是一个非数字值
 
 ------
 
@@ -538,4 +538,58 @@ interface java.lang.CharSequence
 - `isDigit(ch)`, `isLetter(ch)`, `isLetterOrDigit(ch)`, `isLowerCase(ch)`
 - `toLowerCase(ch)`
 
+------
 
+### System类
+
+- 无法创建该类的对象，也无法实例化该类
+
+**成员变量：**
+
+- `PrintStream out`
+- `InputStream in`
+- `PrintStream err`
+
+```java
+/*读取输入的字符（无法读取汉字）*/
+int ch;		//必须使用int类型，否则会因为丢失精度而编译失败
+ch = System.in.read();	
+System.out.println((char)ch);
+
+/*正确处理汉字*/
+InputStreamReader in = new InputStreamReader(System.in, "GB2312");
+c = in.read();		//可以输出汉字但是和读入的不一样emmmm
+```
+
+**成员方法：**
+
+- `arraycopy(Object src, int srcPos, Object dest, int destPos, int length)`: 从原数组的srcPos开始复制length个元素到目标数组的destPos（覆盖）
+
+- `currentTimeMillis()`: 返回计算机时间
+
+  ```java
+  long start = System.currentTimeMillis();
+  //TODO
+  long end = System.currentTimeMillis();
+  long time = end - start;
+  ```
+
+- `exit()`: 终止当前正在运行的Java虚拟机
+
+  - 可以用在图形界面编程中程序的退出
+
+- `gc()`: 请求系统进行垃圾回收（至于系统是否立刻回收则不一定）
+
+- `getProperty(String key)`: 获取系统中key属性的值
+
+  | 属性名        | 属性说明            |
+  | ------------- | ------------------- |
+  | java. version | Java 运行时环境版本 |
+  | java.home     | Java 安装目录       |
+  | os.name       | 操作系统的名称      |
+  | os.version    | 操作系统的版本      |
+  | user.name     | 用户的账户名称      |
+  | user.home     | 用户的主目录        |
+  | user.dir      | 用户的当前工作目录  |
+
+  
