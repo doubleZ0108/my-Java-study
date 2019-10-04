@@ -592,4 +592,68 @@ c = in.read();		//可以输出汉字但是和读入的不一样emmmm
   | user.home     | 用户的主目录        |
   | user.dir      | 用户的当前工作目录  |
 
-  
+
+------
+
+## 数组
+
+- **默认值：**
+  - 数值数组：0
+  - 引用元素：null
+
+### 一维数组
+
+```java
+int[] arr;						//声明
+arr = new int[10];		//分配空间
+
+int[] arr = new int[]{1,2,3,4,5};
+
+int[] arr = {1,2,3,4,5};
+```
+
+- 声明数组时不需要规定数组的长度
+- 声明时只是得到了一个存放数组的变量，并没有为数组元素分配空间
+- 数组的大小不能修改
+
+------
+
+### 二维数组
+
+```java
+int arr[][];
+int[][] arr;
+arr = new int[][]{
+  {1,2},
+  {3,4}
+};
+
+int arr[][] = {{1,2},{3,4}};
+```
+
+------
+
+### 数组方法
+
+- `Arrays.equals(arrA, arrB)`: 判断两数组是否相等（元素个数相等 && 对应位置元素相等）
+
+- `Arrays.fill(array, value)`: 用同一个数值填充数组
+
+- **查找：**
+
+  - `Arrays.binarySearch(arr, key)`: 如果没查找到则返回-1或“-插入点”
+    - 插入点是搜索键将要插入数组的位置，即第一个大于此键的元素索引
+
+- **复制：**
+
+  - `Object[] Arrays.copyOf(arr, length)`: 复制数组至指定长度 *-> 数组已经存在将会被重构*
+
+    ```java
+    int[] arr = new int[5];
+    int[] fresh_arr = (int[])Arrays.copyOf(arr, 8);		//其他空余的三个元素用默认值填充
+    ```
+
+  - `Arrays.copyOfRange(arr, start_index, end_index)`: 将指定数组的指定长度复制到一个新数组中 *-> 数组已经存在将会被重构*
+
+  - `System.arraycopy(src_arr, src_index, dest_arr, dest_index, length)`：*-> 目标数组必须已经存在，且不会被重构，相当于替换目标数组中的部分元素*
+
