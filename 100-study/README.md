@@ -655,5 +655,25 @@ int arr[][] = {{1,2},{3,4}};
 
   - `Arrays.copyOfRange(arr, start_index, end_index)`: 将指定数组的指定长度复制到一个新数组中 *-> 数组已经存在将会被重构*
 
+    ```java
+    int[] fresh_arr = Arrays.copyOfRange(arr, 1,3);
+    ```
+
   - `System.arraycopy(src_arr, src_index, dest_arr, dest_index, length)`：*-> 目标数组必须已经存在，且不会被重构，相当于替换目标数组中的部分元素*
+
+    ```java
+    int[] fresh_arr = new int[5];
+    System.arraycopy(arr, 0, fresh_arr, 0, 5);
+    ```
+
+  - `clone()`: *-> 目标数组如果已经存在，将会被重构*
+
+    ```java
+    int[] fresh_arr = (int[])arr.clone();
+    ```
+
+- **排序：**
+
+  - `Arrays.sort(arr)``: 升序排列
+
 
