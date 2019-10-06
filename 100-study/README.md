@@ -676,4 +676,23 @@ int arr[][] = {{1,2},{3,4}};
 
   - `Arrays.sort(arr)``: 升序排列
 
+------
+
+## 类和对象
+
+- 继承只能单即成
+
+### 定义
+
+```java
+public [abstract | final] class ClassName [extends AnotherClass]
+[implements<interface_name>]
+{
+  //abstract -> 抽象类
+  //final -> 不允许被继承
+  //extends -> 继承其他类
+  //implements -> 实现某些接口
+}
+```
+
 
