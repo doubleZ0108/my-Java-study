@@ -30,6 +30,7 @@
   - 可通过Javadoc将注释的内容生成文档，并输出到HTML中
   - 可以包含多个@标签
 
+
 | 标签       | 描述                                              | 示例                                                         |
 | ---------- | ------------------------------------------------- | ------------------------------------------------------------ |
 | @author    | 标识一个类的作者                                  | @author description                                          |
@@ -723,15 +724,6 @@ public [abstract | final] class ClassName [extends AnotherClass]
 
    > 类的加载是指把类的 .class 文件中的二进制数据读入内存中，把它存放在运行时数据区的方法区内，然后在堆区创建一个 java.lang.Class 对象，用来封装类在方法区内的数据结构
 
-### 垃圾回收 ｜ GC
-
-内存自动回收称为垃圾回收（Garbage Collection）机制，简称 GC。垃圾回收机制是指 JVM 用于释放那些不再使用的对象所占用的内存
-
-**垃圾**
-
-- 超出作用域的对象被视为垃圾
-- 被赋值为null的对象为null
-
 **对象的状态**
 
 - 可触及状态：当对象被创建后，程序中还有引用变量引用它
@@ -742,13 +734,49 @@ public [abstract | final] class ClassName [extends AnotherClass]
 
 ------
 
+### 构造方法
+
+- 构造方法不能被 static、final、synchronized、abstract 和 native 修饰
+
+### 直接输出对象 toString()
+
+```java
+@Override
+public String toString() {
+  return "这是我的方法：" + arg;
+}
+```
+
+### 析构函数 finalize()
+
+由于finalize()的不确定型，在调用析构函数之后要调用系统垃圾回收
+
+```java
+@Override
+protected void finalize() throws Throwable {
+    //释放对象所占资源等相关操作
+  	//可能使对象复活
+}
+
+//使用
+obj = null;
+try{
+  System.gc();
+  //Runtime.gc();
+}catch(InterruptedException e){
+  e.printStackTrace();
+}
+```
+
+------
+
 ### 控制修饰符
 
-#### 类
+#### 类访问控制符
 
 类的访问控制符只能是 <u>空</u> 或 <u>public</u>
 
-#### 方法和属性
+#### 方法和属性访问控制符
 
 | 访问范围         | private  | friendly(默认) | protected | public |
 | ---------------- | -------- | -------------- | --------- | ------ |
@@ -802,3 +830,66 @@ public [abstract | final] class ClassName [extends AnotherClass]
   - **类：**该类不能被继承，该类是最终形态
     - 该类是继承树中的叶子类
     - 属性可以不为final；方法自动变成final
+
+------
+
+### 可变参数
+
+```java
+public void display(int fixed_args, int...args){
+  System.out.println("固定参数: " + fixed_args);
+  System.out.println("可变参数：");
+  for(int arg : args){
+    System.out.println(arg);
+  }
+}
+```
+
+- 可变参数必须定义在参数列表的最后
+
+  ```java
+  public void display(int fixed_args, int...int_args, String...str_args){}		//这样是不允许的
+  ```
+
+------
+
+### 垃圾回收 ｜ GC
+
+内存自动回收称为垃圾回收（Garbage Collection）机制，简称 GC。垃圾回收机制是指 JVM 用于释放那些不再使用的对象所占用的内存
+
+**垃圾**
+
+- 超出作用域的对象被视为垃圾
+- 被赋值为null的对象为null
+
+------
+
+## 包
+
+将类组合成单元，保护类、数据和方法。在包外不能访问该类
+
+### 系统包
+
+| 包                    | 说明                                                         |
+| --------------------- | ------------------------------------------------------------ |
+| java.lang             | Java 的核心类库，包含运行 Java 程序必不可少的系统类，如基本数据类型、基本数学函数、 字符串处理、异常处理和线程类等，系统默认加载这个包 |
+| java.io               | Java 语言的标准输入/输出类库，如基本输入/输出流、文件输入/输出、过滤输入/输出流等 |
+| java.util             | 包含如处理时间的 Date 类，处理动态数组的 Vector 类，以及 Stack 和 HashTable 类 |
+| java.awt              | 构建图形用户界面（GUI）的类库，低级绘图操作 Graphics 类、图形界面组件和布局管理 （如 Checkbox 类、Container 类、LayoutManger 接口等），以及用 户界面交互控制和事 件响应（如 Event 类） |
+| java.awt.image        | 处理和操纵来自网上的图片的 java 工具类库                     |
+| java.wat.peer         | 很少在程序中直接用到，使得同一个 Java 程序在不同的软硬件平台上运行 |
+| java.net              | 实现网络功能的类库有 Socket 类、ServerSocket 类              |
+| java.lang.reflect     | 提供用于反射对象的工具                                       |
+| java.util.zip         | 实现文件压缩功能                                             |
+| java.awt.datatransfer | 处理数据传输的工具类，包括剪贴板、字符串发送器等             |
+| java.sql              | 实现 JDBC 的类库                                             |
+| java.rmi              | 提供远程连接与载入的支持                                     |
+| java. security        | 提供安全性方面的有关支持                                     |
+
+### 自定义包
+
+- 建立目录，目录名与包名一致
+- 在需要放入该包的类文件头写上`package 包名`
+
+------
+
