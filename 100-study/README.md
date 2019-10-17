@@ -19,12 +19,14 @@
 - 文档注释：在类、方法、变量上面，描述其作用
 
   - 鼠标放在类和变量上面会显示注释
+
   ```java
   /**
    *	文档注释
    *
    */
   ```
+
   - 可通过Javadoc将注释的内容生成文档，并输出到HTML中
   - 可以包含多个@标签
 
@@ -273,6 +275,7 @@ boolean flag = m.matches();
 
 ```java
 boolean flag = Pattern.matches("a*b", "aaaaab");
+
 ```
 
 #### 提取指定子串
@@ -283,6 +286,7 @@ while(m.find()){		//一次查找与Pattern匹配的子串，下次调用时会�
   m.start()			//该子串的起始位置
   m.end()				//该子串的结束位置
 }
+
 ```
 
 ------
@@ -319,6 +323,7 @@ r2.setSeed(1);
 //产生的随机数是一样的
 System.out.println(r1.nextInt());
 System.out.println(r2.nextInt());
+
 ```
 
 **产生随机数：**
@@ -346,6 +351,7 @@ System.out.println(r2.nextInt());
 DecimalFormat df = new DecimalFormat("0.00");		//保留两位小数（四舍五入）
 double num = 123.456;
 df.format(num);				//123.46
+
 ```
 
 ### 大数运算 | BigInteger BigDecimal
@@ -371,6 +377,7 @@ BigInteger bi1 = new BigInteger("1234567890");
 BigInteger bi2 = new BigInteger("9876543210");
 
 bi1.add(bi2)
+
 ```
 
 - `divide(BigDecimal divisor, int scale, int roundingMode)`
@@ -410,6 +417,7 @@ bi1.add(bi2)
 
 ```java
 Calendar c = Calendar.getInstance();
+
 ```
 
 **方法：**
@@ -434,11 +442,13 @@ Calendar c = Calendar.getInstance();
 ```java
 DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CHINA);
 String date = df.format(new Date());
+
 ```
 
 ```java
 DateFormat df = DateFormat.getTimeInstance(DateFormat.FULL, Locale.CHINA);
 String time = df.format(new Date());
+
 ```
 
 #### SimpleDateFormat
@@ -469,6 +479,7 @@ String time = df.format(new Date());
 Date date = new Date();
 SimpleDateFormat sd = new SimpleDateFormat("「现在是 yyyy年-MM月-dd日 E HH:mm:ss:SSS」");
 System.out.println(sd.format(date));
+
 ```
 
 ------
@@ -506,6 +517,7 @@ interface java.io.Serializable
 interface java.lang.Comparable
 interface java.lang.CharSequence
 */
+
 ```
 
 ------
@@ -559,6 +571,7 @@ System.out.println((char)ch);
 /*正确处理汉字*/
 InputStreamReader in = new InputStreamReader(System.in, "GB2312");
 c = in.read();		//可以输出汉字但是和读入的不一样emmmm
+
 ```
 
 **成员方法：**
@@ -572,6 +585,7 @@ c = in.read();		//可以输出汉字但是和读入的不一样emmmm
   //TODO
   long end = System.currentTimeMillis();
   long time = end - start;
+  
   ```
 
 - `exit()`: 终止当前正在运行的Java虚拟机
@@ -609,6 +623,7 @@ arr = new int[10];		//分配空间
 int[] arr = new int[]{1,2,3,4,5};
 
 int[] arr = {1,2,3,4,5};
+
 ```
 
 - 声明数组时不需要规定数组的长度
@@ -628,6 +643,7 @@ arr = new int[][]{
 };
 
 int arr[][] = {{1,2},{3,4}};
+
 ```
 
 ------
@@ -650,12 +666,14 @@ int arr[][] = {{1,2},{3,4}};
     ```java
     int[] arr = new int[5];
     int[] fresh_arr = (int[])Arrays.copyOf(arr, 8);		//其他空余的三个元素用默认值填充
+    
     ```
 
   - `Arrays.copyOfRange(arr, start_index, end_index)`: 将指定数组的指定长度复制到一个新数组中 *-> 数组已经存在将会被重构*
 
     ```java
     int[] fresh_arr = Arrays.copyOfRange(arr, 1,3);
+    
     ```
 
   - `System.arraycopy(src_arr, src_index, dest_arr, dest_index, length)`：*-> 目标数组必须已经存在，且不会被重构，相当于替换目标数组中的部分元素*
@@ -663,12 +681,14 @@ int arr[][] = {{1,2},{3,4}};
     ```java
     int[] fresh_arr = new int[5];
     System.arraycopy(arr, 0, fresh_arr, 0, 5);
+    
     ```
 
   - `clone()`: *-> 目标数组如果已经存在，将会被重构*
 
     ```java
     int[] fresh_arr = (int[])arr.clone();
+    
     ```
 
 - **排序：**
@@ -699,6 +719,7 @@ public [abstract | final] class ClassName [extends AnotherClass]
   //static -> 静态方法
   //final -> 该方法benign被重写或重载
 }
+
 ```
 
 ### 实例化对象方法
@@ -710,6 +731,7 @@ public [abstract | final] class ClassName [extends AnotherClass]
   ```java
   Class cl = Class.forName("Main");
   Main m = (Main)cl.newInstance();
+  
   ```
 
 - `clone()`
@@ -743,6 +765,7 @@ public [abstract | final] class ClassName [extends AnotherClass]
 public String toString() {
   return "这是我的方法：" + arg;
 }
+
 ```
 
 ### 析构函数 finalize()
@@ -764,6 +787,7 @@ try{
 }catch(InterruptedException e){
   e.printStackTrace();
 }
+
 ```
 
 ------
@@ -816,6 +840,7 @@ try{
       //TODO
     }
   }
+  
   ```
 
 #### final
@@ -841,12 +866,14 @@ public void display(int fixed_args, int...args){
     System.out.println(arg);
   }
 }
+
 ```
 
 - 可变参数必须定义在参数列表的最后
 
   ```java
   public void display(int fixed_args, int...int_args, String...str_args){}		//这样是不允许的
+  
   ```
 
 ------
@@ -956,3 +983,83 @@ public void display(int fixed_args, int...args){
 - 向上转型自动完成；向下转型必须强制类型转换
   - 子类比父类东西多，向下转型不安全
 - 如果两种类型没有继承关系，不允许进行类型转换
+
+------
+
+### 抽象类
+
+- abstract 关键字只能用于普通方法，不能用于 static 方法或者构造方法中
+- 抽象类中必须包含至少一个抽象方法，并且所有抽象方法不能有具体的实现
+
+```java
+abstract class Shape{
+  protected double height;
+  protected double weight;
+  
+  abstract public double area();	//注意这里不能手快写{}，{}就已经是方法体了
+}
+
+```
+
+------
+
+## 接口
+
+接口是一种规范，封装了可以被多个类继承的公共部分（比抽象类更抽象化）
+
+> 接口把方法的特征和实现分隔开
+>
+> **<u>接口**是角色，包装了角色相关的操作和属性</u>
+>
+> <u>**实现接口的类**是演这个角色的演员</u>
+>
+> 一个角色由不同的演员来演，而不同的演员除了扮演同一个角色之外，不要求其他的公共之处
+
+### 接口定义
+
+- **属性：**
+
+  - 都是常量（public，static，final）
+  - 接口中定义的变量必须初始化
+
+- **方法：**
+
+  - 必须是abstract && public（不需要写，已经隐式声明）
+  - 没有构造函数（不能被实例化）
+
+- **接口继承：**一个接口不能实现另一个接口，但可以继承多个其他接口
+
+  - 子接口可以对父接口的方法和常量重写
+
+  ```java
+  public interface StudentInterface extends PeopleInterface{
+    //...
+  }
+  
+  ```
+
+### 接口实现
+
+```java
+public class Student implements PeopleInterface,StudentInterface{
+  //...
+}
+
+```
+
+- 一个类只有一个直接父类，但可以实现多个接口
+- :question: 如果一个类实现两个声明了同样方法的接口，那么相同的方法将被其中任一个接口使用
+- 实现接口的方法必须声明为public
+
+------
+
+### 接口和抽象类的区别
+
+| 接口                 | 抽象类                         |
+| -------------------- | ------------------------------ |
+| 接口只能是功能的定义 | 抽象类例可以包含具体的实现方法 |
+| implements           | extends                        |
+| 某类可以实现多个接口 | 某类只能实现一个抽象类         |
+|                      |                                |
+
+
