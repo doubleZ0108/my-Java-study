@@ -6,28 +6,143 @@
 
 ## Live Templates
 
-| Abbreviation      | Live Templates                                              |
-| ----------------- | ----------------------------------------------------------- |
-| sout              | System.out.println();                                       |
-| "hello".sout      | System.out.println("hello");                                |
-| 10.fori           | for (int i = 0; i < 10; i++) {    }                         |
-| str.length().forr | for (int length = str.length(); length > 0; length--) {   } |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
-|                   |                                                             |
+- **sout:** System.out.println();
+
+  - "hello".sout
+
+    ```java
+    System.out.println("hello");
+    ```
+
+- **for**
+
+  - **fori**：顺序遍历
+
+    - 10.fori
+
+    - str.length().fori
+
+      ```java
+      for (int i = 0; i < 10; i++) {
+      
+      }
+      
+      String str;
+      for (int i = 0; i < str.length(); i++) {
+      
+      }
+      ```
+
+  - forr: 逆序遍历
+
+    ```java
+    for (int i = li.size() - 1; i >= 0; i--) {
+    
+    }
+    ```
+
+  - for：遍历容器
+
+    ```java
+    for (Object o : li) {
+    
+    }
+    ```
+
+- **.var**：定义局部变量
+
+  - 10.var
+
+  - "tongji".var
+
+  - new Object().var
+
+    ```java
+    int i = 10;
+    String tongji = "tongji";
+    Object o = new Object();
+    ```
+
+- **.field:** 定义成员变量
+
+  - "tongji".field
+
+    <img src="ScreenShots/IntelliJ IDEA/field.png" alt="image-20191018135333757" style="zoom:50%;" />
+
+- **.format:** **格式化字符串**
+
+  - "name=%s".format
+
+    ```java
+    String.format("name=%s", )
+    ```
+
+- **.notnull / .nn  | .null**
+
+  - o.notnull / .nn
+
+    ```java
+    if (o != null) {
+    
+    }
+    ```
+
+  - .null
+
+    ```java
+    if (o == null) {
+    
+    }
+    ```
+
+- **.if:** 生成if判断语句
+
+  - flag.if
+
+  - flag.not -> .if
+
+    ```java
+    if (flag) {
+        
+    }
+    if (!flag) {
+        
+    }
+    ```
+
+- **.return:** 返回值
+
+  - "hello".return
+
+    ```java
+    return "hello";
+    ```
+
+- **.synchronized:** 生成同步锁
+
+  - o.synchronized
+
+    ```java
+    synchronized (o) {
+    
+    }
+    ```
+
+- **.lambda:** Lambda语句
+
+  - System.out.println(1).lambda
+
+    ```java
+    () -> System.out.println(1)
+    ```
+
+- **.opt：**Optional语句
+
+  ```java
+  Optional.of(() -> System.out.println(1))
+  ```
+
+  
 
 ------
 
@@ -135,7 +250,7 @@
 
   ```java
   /**
-   * @description: $description$
+   * @description: 
    *
   $params$
    *
