@@ -275,7 +275,6 @@ boolean flag = m.matches();
 
 ```java
 boolean flag = Pattern.matches("a*b", "aaaaab");
-
 ```
 
 #### 提取指定子串
@@ -286,7 +285,6 @@ while(m.find()){		//一次查找与Pattern匹配的子串，下次调用时会�
   m.start()			//该子串的起始位置
   m.end()				//该子串的结束位置
 }
-
 ```
 
 ------
@@ -323,7 +321,6 @@ r2.setSeed(1);
 //产生的随机数是一样的
 System.out.println(r1.nextInt());
 System.out.println(r2.nextInt());
-
 ```
 
 **产生随机数：**
@@ -351,7 +348,6 @@ System.out.println(r2.nextInt());
 DecimalFormat df = new DecimalFormat("0.00");		//保留两位小数（四舍五入）
 double num = 123.456;
 df.format(num);				//123.46
-
 ```
 
 ### 大数运算 | BigInteger BigDecimal
@@ -377,7 +373,6 @@ BigInteger bi1 = new BigInteger("1234567890");
 BigInteger bi2 = new BigInteger("9876543210");
 
 bi1.add(bi2)
-
 ```
 
 - `divide(BigDecimal divisor, int scale, int roundingMode)`
@@ -417,7 +412,6 @@ bi1.add(bi2)
 
 ```java
 Calendar c = Calendar.getInstance();
-
 ```
 
 **方法：**
@@ -442,13 +436,11 @@ Calendar c = Calendar.getInstance();
 ```java
 DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT, Locale.CHINA);
 String date = df.format(new Date());
-
 ```
 
 ```java
 DateFormat df = DateFormat.getTimeInstance(DateFormat.FULL, Locale.CHINA);
 String time = df.format(new Date());
-
 ```
 
 #### SimpleDateFormat
@@ -479,7 +471,6 @@ String time = df.format(new Date());
 Date date = new Date();
 SimpleDateFormat sd = new SimpleDateFormat("「现在是 yyyy年-MM月-dd日 E HH:mm:ss:SSS」");
 System.out.println(sd.format(date));
-
 ```
 
 ------
@@ -517,7 +508,6 @@ interface java.io.Serializable
 interface java.lang.Comparable
 interface java.lang.CharSequence
 */
-
 ```
 
 ------
@@ -571,7 +561,6 @@ System.out.println((char)ch);
 /*正确处理汉字*/
 InputStreamReader in = new InputStreamReader(System.in, "GB2312");
 c = in.read();		//可以输出汉字但是和读入的不一样emmmm
-
 ```
 
 **成员方法：**
@@ -585,7 +574,6 @@ c = in.read();		//可以输出汉字但是和读入的不一样emmmm
   //TODO
   long end = System.currentTimeMillis();
   long time = end - start;
-  
   ```
 
 - `exit()`: 终止当前正在运行的Java虚拟机
@@ -623,7 +611,6 @@ arr = new int[10];		//分配空间
 int[] arr = new int[]{1,2,3,4,5};
 
 int[] arr = {1,2,3,4,5};
-
 ```
 
 - 声明数组时不需要规定数组的长度
@@ -643,7 +630,6 @@ arr = new int[][]{
 };
 
 int arr[][] = {{1,2},{3,4}};
-
 ```
 
 ------
@@ -666,14 +652,12 @@ int arr[][] = {{1,2},{3,4}};
     ```java
     int[] arr = new int[5];
     int[] fresh_arr = (int[])Arrays.copyOf(arr, 8);		//其他空余的三个元素用默认值填充
-    
     ```
 
   - `Arrays.copyOfRange(arr, start_index, end_index)`: 将指定数组的指定长度复制到一个新数组中 *-> 数组已经存在将会被重构*
 
     ```java
     int[] fresh_arr = Arrays.copyOfRange(arr, 1,3);
-    
     ```
 
   - `System.arraycopy(src_arr, src_index, dest_arr, dest_index, length)`：*-> 目标数组必须已经存在，且不会被重构，相当于替换目标数组中的部分元素*
@@ -681,14 +665,12 @@ int arr[][] = {{1,2},{3,4}};
     ```java
     int[] fresh_arr = new int[5];
     System.arraycopy(arr, 0, fresh_arr, 0, 5);
-    
     ```
 
   - `clone()`: *-> 目标数组如果已经存在，将会被重构*
 
     ```java
     int[] fresh_arr = (int[])arr.clone();
-    
     ```
 
 - **排序：**
@@ -719,7 +701,6 @@ public [abstract | final] class ClassName [extends AnotherClass]
   //static -> 静态方法
   //final -> 该方法benign被重写或重载
 }
-
 ```
 
 ### 实例化对象方法
@@ -731,7 +712,6 @@ public [abstract | final] class ClassName [extends AnotherClass]
   ```java
   Class cl = Class.forName("Main");
   Main m = (Main)cl.newInstance();
-  
   ```
 
 - `clone()`
@@ -765,7 +745,6 @@ public [abstract | final] class ClassName [extends AnotherClass]
 public String toString() {
   return "这是我的方法：" + arg;
 }
-
 ```
 
 ### 析构函数 finalize()
@@ -787,7 +766,6 @@ try{
 }catch(InterruptedException e){
   e.printStackTrace();
 }
-
 ```
 
 ------
@@ -840,7 +818,6 @@ try{
       //TODO
     }
   }
-  
   ```
 
 #### final
@@ -866,14 +843,12 @@ public void display(int fixed_args, int...args){
     System.out.println(arg);
   }
 }
-
 ```
 
 - 可变参数必须定义在参数列表的最后
 
   ```java
   public void display(int fixed_args, int...int_args, String...str_args){}		//这样是不允许的
-  
   ```
 
 ------
@@ -998,7 +973,6 @@ abstract class Shape{
   
   abstract public double area();	//注意这里不能手快写{}，{}就已经是方法体了
 }
-
 ```
 
 ------
@@ -1009,7 +983,7 @@ abstract class Shape{
 
 > 接口把方法的特征和实现分隔开
 >
-> **<u>接口**是角色，包装了角色相关的操作和属性</u>
+> <u>**接口**是角色，包装了角色相关的操作和属性</u>
 >
 > <u>**实现接口的类**是演这个角色的演员</u>
 >
@@ -1035,7 +1009,6 @@ abstract class Shape{
   public interface StudentInterface extends PeopleInterface{
     //...
   }
-  
   ```
 
 ### 接口实现
@@ -1044,7 +1017,6 @@ abstract class Shape{
 public class Student implements PeopleInterface,StudentInterface{
   //...
 }
-
 ```
 
 - 一个类只有一个直接父类，但可以实现多个接口
@@ -1055,11 +1027,58 @@ public class Student implements PeopleInterface,StudentInterface{
 
 ### 接口和抽象类的区别
 
-| 接口                 | 抽象类                         |
-| -------------------- | ------------------------------ |
-| 接口只能是功能的定义 | 抽象类例可以包含具体的实现方法 |
-| implements           | extends                        |
-| 某类可以实现多个接口 | 某类只能实现一个抽象类         |
-|                      |                                |
+并不是所有的类都是用来描绘对象的，如果一个类中没有描绘一个具体的对象，那么这样的类就是抽象类
 
+| 接口                                                         | 抽象类                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 接口只能是功能的定义                                         | 抽象类可以包含具体的实现方法                                 |
+| implements                                                   | extends                                                      |
+| 某类可以实现多个接口                                         | 某类只能实现一个抽象类                                       |
+| 不关注类之间的关系：父类和子类在概念上不要求相同，只是抽取相互之间没有关系的共同特征<br /><u>接口是对一组具有相同属性和方法的逻辑上不相关的事物的一种抽象</u> | 继承关系：父类和子类在概念上是相同的<br /><u>抽象类是对一组具有相同属性和方法的逻辑上有关系的事物的一种抽象</u> |
+| like a                                                       | is a                                                         |
+
+> 例. 动物都会吃，有的动物会飞有的不会飞
+>
+> - 吃：放到Animal抽象类中
+> - 飞：放到canFly接口中
+>
+> - 不会飞的动物继承Animal抽象类
+> - 会飞的动物继承Animal抽象类，并实现canFly接口
+>
+> ```java
+> abstract class Animal{
+>   abstract public void eat();
+> }
+> 
+> interface canFly{
+>   void fly();
+> }
+> 
+> class Animal_cannot_fly extends Animal{
+>   @Override
+>   public void eat(){
+>     System.out.println("Animal_cannot_fly.eat()");
+>   }
+> }
+> 
+> class Animal_can_fly extends Animal implements canFly{
+>   @Override
+>   public void eat() {
+>     System.out.println("Animal_can_fly.eat()");
+>   }
+> 
+>   @Override
+>   public void fly() {
+>     System.out.println("Animal_can_fly.fly()");
+>   }
+> }
+> 
+> /* 使用 */
+> Animal_cannot_fly an = new Animal_cannot_fly();
+> an.eat();
+> 
+> Animal_can_fly ac = new Animal_can_fly();
+> ac.eat();
+> ac.fly();
+> ```
 
