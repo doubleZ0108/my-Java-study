@@ -1082,3 +1082,29 @@ public class Student implements PeopleInterface,StudentInterface{
 > ac.fly();
 > ```
 
+------
+
+## 异常处理
+
+```java
+try{
+  //TODO
+}catch(ExceptionType1 e){
+  //handle
+}catch(ExceptionType2 e){
+  /* 对于处理不了的异常或要转型的异常，通过throws，调用上层的调用方法处理 */
+  throw(e);		//抛出异常
+  throws(e);	//可能会出现的异常
+}finally{				//任何情况下都会执行
+  //释放资源
+}
+```
+
+- **输出异常信息**
+  - `printStackTrace()`：之处异常的类型、性质、栈层次及出现在程序中的位置
+  - `getMessage()`：输出错误性质
+- 当一个catch捕获到异常时，其他catch就不再进行匹配
+  - 当捕获的多个异常之间存在父子关系时，捕获异常一般先捕获子类，再捕获父类，所以**子类异常必须在父类异常的前面**
+- catch, finally都是可选的，但二者至少出现一个
+- 不在finally中使用return和throw等导致方法终止的语句，否则将导致try和catch中的return和throw语句失效
+- 
