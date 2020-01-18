@@ -1107,4 +1107,26 @@ try{
   - 当捕获的多个异常之间存在父子关系时，捕获异常一般先捕获子类，再捕获父类，所以**子类异常必须在父类异常的前面**
 - catch, finally都是可选的，但二者至少出现一个
 - 不在finally中使用return和throw等导致方法终止的语句，否则将导致try和catch中的return和throw语句失效
-- 
+
+### 自动资源管理
+
+```java
+try(
+	BufferReader br = new BufferedReader(new FileReader("xx.java"));
+  PrintStream ps = new PrintStream(new FileOutputStream("a.txt"));
+){
+  //TODO
+}
+```
+
+```java
+final BufferReader br = new BufferedReader(new FileReader("xx.java"));
+final PrintStream ps = new PrintStream(new FileOutputStream("a.txt"));
+
+try(br; ps){
+  //TODO
+}
+```
+
+- try代码块结束时，会自动释放资源
+- try中声明的资源隐式为final
