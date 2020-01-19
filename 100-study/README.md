@@ -1130,3 +1130,58 @@ try(br; ps){
 
 - try代码块结束时，会自动释放资源
 - try中声明的资源隐式为final
+
+### 声明和抛出异常
+
+**throws**：声明要抛出的异常
+
+- 一个方法产生它不处理的异常时，需要在方法的头部声明这个异常，一遍将该异常传递到方法的外部进行处理（当前不知道如何处理这种类型的异常，该异常应该由上一级的调用者处理）
+- 如果main方法也不知道如何处理，则该异常交给JVM处理（打印异常的跟踪栈信息，并且终止程序）
+- 子类方法声明抛出的异常不能比父类声明抛出的异常多
+
+```java
+public static void readFile() throws IOException{
+  FileInputStream file = new FileInputStream("a.txt");
+  //...
+}
+
+public static void main(String[] args){
+  try{
+    readFile();
+  }catch (IOException e){
+    //捕获异常
+  }
+}
+```
+
+**throw**：抛出异常对象
+
+- throw语句执行时，后面的语句将不执行，返回调用者程序寻找匹配的catch，如果没有匹配的，则再向上一层找catch
+- 一般只会抛出程序中已经产生的异常类的实例
+
+### 多异常捕获
+
+```java
+try{
+  //TODO
+}catch(IOException | ParseException e){
+  //handle
+}
+```
+
+- 并列的多个异常不能有包含关系
+- 多异常捕获时，异常变量隐式为final，因此不能对异常变量重新赋值
+
+### 自定义异常
+
+```java
+public class XxxException extends Exception{
+  public XxxException(){
+    super();
+  }
+  public XxxException(String str){
+    super(str);
+  }
+}
+```
+
