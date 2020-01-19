@@ -1185,3 +1185,23 @@ public class XxxException extends Exception{
 }
 ```
 
+### 记录日志类
+
+- Logger的默认级别是INFO，比它低的日志将不现实
+  - `logger.setLevel(Level.FINE);`可将FINE和更高级别的都记录下来
+
+```java
+private static Logger log = Logger.getLogger(Main.class.toString());
+
+public static void main(String[] args) {
+  log.finest("this is a finest");
+  log.finer("this is a finer");
+  log.fine("this is a fine");
+  log.config("this is a config");
+  log.info("this is a info");
+  log.warning("this is a warning");
+  log.severe("this is a server");
+
+}
+```
+
