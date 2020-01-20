@@ -1205,3 +1205,30 @@ public static void main(String[] args) {
 }
 ```
 
+------
+
+## 数据结构
+
+- **集合**
+  - Collection
+    - Queue
+      - Deque：双端队列 
+    - List
+      - ArrayList：数组实现的List
+      - LinkedList
+    - Set
+      - HashSet
+      - TreeSet：有序Set
+  - Map
+- 把一个对象丢进集合中，集合会忘记这个对象的类型，所有集合元素都是Object类型?
+
+### List
+
+- **ArrayList**：可变数组
+  - 提供基于索引访问（随机访问）
+  - 插入删除效率低
+  - 对尾增加和删除较好
+- **LinkedList**：链表
+  - 善于插入删除
+  - 随机访问效果差
+  - 对头尾操作方便
