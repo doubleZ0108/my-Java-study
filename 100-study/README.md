@@ -1241,7 +1241,61 @@ public static void main(String[] args) {
 - **TreeSet**
   - 默认情况下是自然排序的
   - 只能添加相同数据类型的对象
-  - 方法
+  - **方法**
     - `subSet(fromElement, toElement)`
     - `headSet(toElement)`：toElement之前的所有对象
     - `tailSet(fromElement)`
+
+### Map
+
+- key不允许重复，value可以重复
+
+- **方法**
+
+  - `containsKey(key)`
+  - `containsValue(value)`
+  - `entrySet()`：所有键-值对的Set集合
+  - `keySet()`：所有键对象的Set集合
+  - `values()`：所有value组成的Collection
+
+- **遍历**
+
+  ```java
+  /* 遍历key */
+  for(Integer key : map.keySet()){
+    System.out.println(key);
+  }
+  
+  /* 遍历value */
+  for(String value : map.values()){
+    System.out.println(value);
+  }
+  
+  /* for中使用entries遍历 */
+  for(Map.Entry<Integer, String> entry : map.entrySet()){
+    Integer key = entry.getKey();
+    String value = entry.getValue();
+    System.out.println(key + ": " + value);
+  }
+  
+  /* 迭代器遍历 */
+  Iterator<Map.Entry<Integer, String>> entryIterator = map.entrySet().iterator();
+  while(entryIterator.hasNext()){
+    Map.Entry<Integer, String> entry = entryIterator.next();
+    Integer key = entry.getKey();
+    String value = entry.getValue();
+    System.out.println(key + ": " + value);
+  }
+  
+  /* 通过键找值遍历 */
+  HashMap hashmap = new HashMap();
+  Iterator iter = hashmap.keySet().iterator();
+  while(iter.hasNext()){
+    Object key = iter.next();
+    Object value = hashmap.get(key);
+  }
+  ```
+
+  
+
+  
