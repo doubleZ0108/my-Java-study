@@ -1232,3 +1232,16 @@ public static void main(String[] args) {
   - 善于插入删除
   - 随机访问效果差
   - 对头尾操作方便
+
+### Set
+
+- **HashSet**
+  - 如果多个线程同时访问或修改一个HashSet，则必须通过代码来保证其同步
+  - 不会出现相同的元素
+- **TreeSet**
+  - 默认情况下是自然排序的
+  - 只能添加相同数据类型的对象
+  - 方法
+    - `subSet(fromElement, toElement)`
+    - `headSet(toElement)`：toElement之前的所有对象
+    - `tailSet(fromElement)`
