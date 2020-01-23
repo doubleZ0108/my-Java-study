@@ -1296,6 +1296,68 @@ public static void main(String[] args) {
   }
   ```
 
-  
+### Collection类
 
-  
+#### 排序
+
+- `sort(list)`
+- `reverse(list)`：逆向排序
+- `shuffle(list)：`洗牌
+- `rotate(list, distance)`：将后distance个元素整体移动到前面
+
+#### 查找、替换
+
+- `binarySearch(list, key)`
+- `frequency(collection, object)`：指定集合中指定元素出现次数
+- `fill(list, object)`：使用指定obj替换指定list中的所有元素
+
+#### 复制
+
+- `copy(destList, srcList)`：目标集合长度要大于等于源集合长度
+
+#### lambda表达式遍历Collection
+
+```java
+collection.forEach(obj -> System.out.println(obj));
+```
+
+#### Iterator遍历Collection
+
+- **方法**
+
+  - `hasNext()`
+
+  - `next()`
+
+  - `remove()`：删除集合里上一次next方法返回的元素
+
+  - `forEachRemaining(lambda表达式)`
+
+    ```java
+    iter.forEachRemaining(obj -> System.out.println(obj));
+    ```
+
+    
+
+- 当使用迭代器访问Collection集合元素时，集合里的元素不能被更改，只有`remove()`可以
+
+- 采用快速失败机制(fail-fast)，一旦在迭代过程中检测到该集合已经被修改，程序立即引发异常，而不是现实修改后的结果，<u>这样可以避免共享资源引发的潜在问题</u>
+
+#### for-each遍历Collection
+
+```java
+for(Object obj : objects){
+  //TODO
+}
+```
+
+- for-each循环中的迭代变量是值传递，因此修改无意义
+- for-each循环中，集合也不能被改变
+
+#### Predicate操作Collection
+
+```java
+objs.removeIf(ele -> ((String) ele).length() < 12)
+```
+
+- 批量删除符合filter条件的所有元素
