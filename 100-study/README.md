@@ -1361,3 +1361,37 @@ objs.removeIf(ele -> ((String) ele).length() < 12)
 ```
 
 - 批量删除符合filter条件的所有元素
+
+#### Stream操作Collection
+
+1. 使用Stream或XxxStream的`builder()`创建Stream对应的Builder
+2. 重复调用Builder的`add()`向该流中添加多个元素
+3. 调用Builder的`build()`获取对应的Stream
+4. 调用Stream的聚集方法
+
+- 中间方法：允许流保持打开状态，并允许直接调用后续方法
+
+  | 方法                           | 说明                                                         |
+  | ------------------------------ | ------------------------------------------------------------ |
+  | filter(Predicate predicate)    | 过滤 Stream 中所有不符合 predicate 的元素                    |
+  | mapToXxx(ToXxxFunction mapper) | 使用 ToXxxFunction 对流中的元素执行一对一的转换，该方法返回的新流中包含了 ToXxxFunction 转换生成的所有元素。 |
+  | peek(Consumer action)          | 依次对每个元素执行一些操作，该方法返回的流与原有流包含相同的元素。该方法主要用于调试。 |
+  | distinct()                     | 该方法用于排序流中所有重复的元素（判断元素重复的标准是使用 equals() 比较返回 true）。这是一个有状态的方法。 |
+  | sorted()                       | 该方法用于保证流中的元素在后续的访问中处于有序状态。这是一个有状态的方法。 |
+  | limit(long maxSize)            | 该方法用于保证对该流的后续访问中最大允许访问的元素个数。这是一个有状态的、短路方法。 |
+
+- 末端方法：对流的最终操作，执行完将被消耗且不可再用
+
+  | 方法                           | 说明                                                       |
+  | ------------------------------ | ---------------------------------------------------------- |
+  | forEach(Consumer action)       | 遍历流中所有元素，对每个元素执行action                     |
+  | toArray()                      | 将流中所有元素转换为一个数组                               |
+  | reduce()                       | 该方法有三个重载的版本，都用于通过某种操作来合并流中的元素 |
+  | min()                          | 返回流中所有元素的最小值                                   |
+  | max()                          | 返回流中所有元素的最大值                                   |
+  | count()                        | 返回流中所有元素的数量                                     |
+  | anyMatch(Predicate predicate)  | 判断流中是否至少包含一个元素符合 Predicate 条件。          |
+  | allMatch(Predicate predicate)  | 判断流中是否每个元素都符合 Predicate 条件                  |
+  | noneMatch(Predicate predicate) | 判断流中是否所有元素都不符合 Predicate 条件                |
+  | findFirst()                    | 返回流中的第一个元素                                       |
+  | findAny()                      | 返回流中的任意一个元素                                     |
