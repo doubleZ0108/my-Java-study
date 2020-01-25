@@ -1396,7 +1396,7 @@ objs.removeIf(ele -> ((String) ele).length() < 12)
   | findFirst()                    | 返回流中的第一个元素                                       |
   | findAny()                      | 返回流中的任意一个元素                                     |
 
-### 不可变集合
+#### 不可变集合
 
 - 调用Set、List、Map的`of()`方法创建包含N个元素的不可变集合
 
@@ -1406,6 +1406,36 @@ List list = List.of(...);
 Map map = Map.of("first", 1, "second", 2);
 Map map2 = Map.ofEntries(Map.entry("first", 1), Map.entry("second", 2));
 ```
+
+### 枚举
+```java
+public enum SexEnum{
+  male, female;
+}
+
+SexEnum.male
+```
+
+- 一组带标识符的常数
+- 不能有重名
+- 默认类型为int
+- **方法**
+  - `values()`：以数组形式返回枚举类型的所有成员
+  
+  - `valueOf()`：将普通字符串转换为枚举实例
+  
+    ```java
+    SexEnum.valueOf("male");		//取出枚举成员male对应的值
+    ```
+  
+  - `compareTo()`：比较两个枚举成员在定义时的顺序
+  
+    ```java
+    SexEnum s = SexEnum.valueOf("male");
+    s.compareTo(SexEnum.female);
+    ```
+  
+  - `ordinal()`：获取枚举成员的索引位置
 
 ------
 
