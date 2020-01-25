@@ -1395,3 +1395,70 @@ objs.removeIf(ele -> ((String) ele).length() < 12)
   | noneMatch(Predicate predicate) | 判断流中是否所有元素都不符合 Predicate 条件                |
   | findFirst()                    | 返回流中的第一个元素                                       |
   | findAny()                      | 返回流中的任意一个元素                                     |
+
+### 不可变集合
+
+- 调用Set、List、Map的`of()`方法创建包含N个元素的不可变集合
+
+```java
+Set set = Set.of(...);
+List list = List.of(...);
+Map map = Map.of("first", 1, "second", 2);
+Map map2 = Map.ofEntries(Map.entry("first", 1), Map.entry("second", 2));
+```
+
+------
+
+## 泛型
+
+- 泛型的本质是提供类型的“**类型参数**”，可以为类、接口、方法指定一个类型参数，通过这个参数限制操作的数据类型，从而保证类型转换的绝对安全
+- 泛型在编译时检查类型安全，并且所有的强制转换都是自动和隐藏的，提高代码的重用率
+
+### 泛型类
+
+```java
+public class Student<type1, type2>{
+  private type1 name;
+  private type2 age;
+}
+
+Student<String, Integer> stu = new Student<String, Integer>("zz", 20);
+```
+
+### 泛型方法
+
+- 泛型方法不一定非要在泛型类中
+- 泛型方法使得该方法能独立于类而产生变化
+
+```java
+public static <T> void test(T buf){
+  //TODO
+}
+```
+
+### 高级用法
+
+#### 限制泛型可用类型
+
+```java
+class Student<T extends someclass>
+```
+
+- 泛型类的类型必须实现或继承someclass这个类或接口
+- 默认时使用Object类作为泛型类型
+
+#### 使用类型通配符
+
+- 创建泛型类对象时限制这个泛型类的类型必须实现或继承某个接口或类
+
+```java
+Student<? extends someclass>
+```
+
+#### 继承泛型类
+
+```java
+public class FatherClass<T1>{}
+public class SonClass<T1,T2,T3> extends FatherClass<T1>{}
+```
+
