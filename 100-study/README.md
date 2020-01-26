@@ -1552,3 +1552,76 @@ try{
 }
 ```
 
+### 访问构造函数
+
+- 创建`Constructor`类对象
+
+  ```java
+  getConstructor()
+  ```
+
+- `Constructor`类的方法
+
+  | 方法名称                       | 说明                                                         |
+  | ------------------------------ | ------------------------------------------------------------ |
+  | isVarArgs()                    | 查看该构造方法是否允许带可变数量的参数，如果允许，返回 true，否则返回 false |
+  | getParameterTypes()            | 按照声明顺序以 Class 数组的形式获取该构造方法各个参数的类型  |
+  | getExceptionTypes()            | 以 Class 数组的形式获取该构造方法可能抛出的异常类型          |
+  | newInstance(Object … initargs) | 通过该构造方法利用指定参数创建一个该类型的对象，如果未设置参数则表示 采用默认无参的构造方法 |
+  | setAccessiable(boolean flag)   | 如果该构造方法的权限为 private，默认为不允许通过反射利用 netlnstance() 方法创建对象。如果先执行该方法，并将入口参数设置为 true，则允许创建对 象 |
+  | getModifiers()                 | 获得可以解析出该构造方法所采用修饰符的整数                   |
+
+- Modifier类
+
+  ```java
+  int modifiers = con.getModifiers();
+  boolean isPublic = Modifier.isPublic(modifiers);
+  ```
+
+  | 静态方法名称         | 说明                                                     |
+  | -------------------- | -------------------------------------------------------- |
+  | isStatic(int mod)    | 如果使用 static 修饰符修饰则返回 true，否则返回 false    |
+  | isPublic(int mod)    | 如果使用 public 修饰符修饰则返回 true，否则返回 false    |
+  | isProtected(int mod) | 如果使用 protected 修饰符修饰则返回 true，否则返回 false |
+  | isPrivate(int mod)   | 如果使用 private 修饰符修饰则返回 true，否则返回 false   |
+  | isFinal(int mod)     | 如果使用 final 修饰符修饰则返回 true，否则返回 false     |
+  | toString(int mod)    | 以字符串形式返回所有修饰符                               |
+
+### 访问方法
+
+- 创建`Method`类对象
+
+  ```java
+  getMethods()
+  ```
+
+- `Method`类方法
+
+  （相同方法省略）
+
+  | 静态方法名称                     | 说明                                                         |
+  | -------------------------------- | ------------------------------------------------------------ |
+  | invoke(Object obj,Object...args) | 利用 args 参数执行指定对象 obj 中的该方法，返回值为 Object 类型 |
+
+### 访问成员变量
+
+- 创建`Field`类对象
+
+  ```java
+  getFields()
+  ```
+
+- `Field`类方法
+
+  | 方法名称                          | 说明                                                         |
+  | --------------------------------- | ------------------------------------------------------------ |
+  | get(Object obj)                   | 获得指定对象 obj 中成员变量的值，返回值为 Object 类型        |
+  | set(Object obj, Object value)     | 将指定对象 obj 中成员变量的值设置为 value                    |
+  | getlnt(0bject obj)                | 获得指定对象 obj 中成员类型为 int 的成员变量的值             |
+  | setlnt(0bject obj, int i)         | 将指定对象 obj 中成员变量的值设置为 i                        |
+  | setFloat(Object obj, float f)     | 将指定对象 obj 中成员变量的值设置为 f                        |
+  | getBoolean(Object obj)            | 获得指定对象 obj 中成员类型为 boolean 的成员变量的值         |
+  | setBoolean(Object obj, boolean b) | 将指定对象 obj 中成员变量的值设置为 b                        |
+  | getFloat(Object obj)              | 获得指定对象 obj 中成员类型为 float 的成员变量的值           |
+  | setAccessible(boolean flag)       | 此方法可以设置是否忽略权限直接访问 private 等私有权限的成员变量 |
+
