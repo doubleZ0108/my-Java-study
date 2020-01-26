@@ -1492,3 +1492,63 @@ public class FatherClass<T1>{}
 public class SonClass<T1,T2,T3> extends FatherClass<T1>{}
 ```
 
+------
+
+## 反射机制
+
+- 在程序运行期，给定类名，可以通过反射机制获取类的所有信息
+
+### Class类
+
+| 类型           | 访问方法                  | 返回值类型         | 说明                                              |
+| -------------- | ------------------------- | ------------------ | ------------------------------------------------- |
+| 包路径         | getPackage()              | Package 对象       | 获取该类的存放路径                                |
+| 类名称         | getName()                 | String 对象        | 获取该类的名称                                    |
+| 继承类         | getSuperclass()           | Class 对象         | 获取该类继承的类                                  |
+| 实现接口       | getlnterfaces()           | Class 型数组       | 获取该类实现的所有接口                            |
+| 构造方法       | getConstructors()         | Constructor 型数组 | 获取所有权限为 public 的构造方法                  |
+|                | getDeclaredContruectors() | Constructor 对象   | 获取当前对象的所有构造方法                        |
+| 方法           | getMethods()              | Methods 型数组     | 获取所有权限为 public 的方法                      |
+|                | getDeclaredMethods()      | Methods 对象       | 获取当前对象的所有方法                            |
+| 成员变量       | getFields()               | Field 型数组       | 获取所有权限为 public 的成员变量                  |
+|                | getDeclareFileds()        | Field 对象         | 获取当前对象的所有成员变量                        |
+| 内部类         | getClasses()              | Class 型数组       | 获取所有权限为 public 的内部类                    |
+|                | getDeclaredClasses()      | Class 型数组       | 获取所有内部类                                    |
+| 内部类的声明类 | getDeclaringClass()       | Class 对象         | 如果该类为内部类，则返回它的成员类，否则返回 null |
+
+- 获取Class实例
+  - `String.class`
+  - `str.getClass()`
+- 其他方法
+  - `isInterface()：
+  - `isArray()`
+  - `isPrimitive()`：是否为基本类型（int、char这些）
+
+### reflect包
+
+- Constructor类：类的构造方法
+- Field类：类或借口中成员变量信息
+- Method类：成员方法信息
+- Array类：动态创建和访问Java数组的方法
+- Modifier类：访问修饰符信息
+
+```java
+try{
+  //动态家在类的运行时对象
+  Class c = Class.forName("java.lang.String");
+
+  //获取成员方法集合
+  Method[] methods = c.getDeclaredMethods();
+  for(Method method : methods){
+    //权限修饰符 public等
+    System.out.println(Modifier.toString(method.getModifiers()));
+    //返回值类型名称
+    System.out.println(method.getReturnType().getName());
+    //方法名称
+    System.out.println(method.getName());
+  }
+}catch (ClassNotFoundException e){
+  System.out.println("找不到该类");
+}
+```
+
