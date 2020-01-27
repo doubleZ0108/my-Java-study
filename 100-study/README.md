@@ -1677,3 +1677,29 @@ try{
 
 - `Writer`
 
+### 系统流
+
+- `System`类
+  - `System.in`：标准输入流，默认设备是键盘
+  - `System.out`：默认设备是控制台
+  - `System.err`：同上
+
+```java
+byte[] byteData = new byte[100];
+try{
+  System.in.read(byteData);
+}catch(IOException e){
+}
+System.out.println("...");
+```
+
+### 字符编码
+
+- **编码类型**
+  - ISO8859-1
+  - GBK/GB2312
+  - Unicode
+  - UTF
+- **方法**
+  - `System.getProperty("file.encoding")`：获取当前系统编码
+  - `getBytes(charset)`：编码转换
