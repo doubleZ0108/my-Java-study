@@ -1704,7 +1704,7 @@ System.out.println("...");
   - `System.getProperty("file.encoding")`：获取当前系统编码
   - `getBytes(charset)`：编码转换
 
-### File类
+### File文件操作类
 
 - 用来操作文件和目录，但不能访问文件内容本身（输入/输出流）
 
@@ -1767,3 +1767,32 @@ public class ImageFilter implements FilenameFilter{
 String imageList = f.list(new ImageFilter());
 ```
 
+### 字节流
+
+#### 字节数组流
+
+
+
+#### 文件流
+
+- **输入流**
+
+  - 如果创建文件时找不到，抛出`FileNotFoundException`异常
+
+  ```java
+  try{
+    FileInputStream fis1 = new FileInputStream(new File("_path_"));
+    FileInputStream fis2 = new FileInputStream("_path_");
+  }catch(FileNotFoundException e){
+  }
+  ```
+
+- **输出流**
+
+  - 如果指定文件不存在，则创建一个新文件；如果已存在，则清除原文件重新写入
+
+### 字符流
+
+
+
+### 转换流
