@@ -1659,6 +1659,12 @@ try{
 
   - Java的字符是Unicode编码（双字节）
 
+  | 方法名及返回值类型                    | 说明                                                         |
+  | ------------------------------------- | ------------------------------------------------------------ |
+  | int read()                            | 从输入流中读取一个字符，并把它转换为 0~65535 的整数。如果返回 -1， 则表示 已经到了输入流的末尾。为了提高 I/O 操作的效率，建议尽量使用下面两种 read() 方法 |
+  | int read(char[] cbuf)                 | 从输入流中读取若干个字符，并把它们保存到参数 cbuf 指定的字符数组中。 该方 法返回读取的字符数，如果返回 -1，则表示已经到了输入流的末尾 |
+  | int read(char[] cbuf,int off,int len) | 从输入流中读取若干个字符，并把它们保存到参数 cbuf 指定的字符数组中。其中， off 指定在字符数组中开始保存数据的起始下标，len 指定读取的字符数。该方法返 回实际读取的字符数，如果返回 -1，则表示已经到了输入流的末尾 |
+
 ### 输出流
 
 - `OutputStream`
@@ -1676,6 +1682,17 @@ try{
     <img src="http://c.biancheng.net/uploads/allimg/200115/5-200115151G3J0.png" alt="OutputStream类的层次结构图" style="zoom:77%;" />
 
 - `Writer`
+
+  | 方法名及返回值类型                         | 说明                                                         |
+  | ------------------------------------------ | ------------------------------------------------------------ |
+  | void write(int c)                          | 向输出流中写入一个字符                                       |
+  | void write(char[] cbuf)                    | 把参数 cbuf 指定的字符数组中的所有字符写到输出流中           |
+  | void write(char[] cbuf,int off,int len)    | 把参数 cbuf 指定的字符数组中的若干字符写到输出流中。其中，off 指定 字符数组中的起始下标，len 表示元素个数 |
+  | void write(String str)                     | 向输出流中写入一个字符串                                     |
+  | void write(String str, int off,int len)    | 向输出流中写入一个字符串中的部分字符。其中，off 指定字符串中的起 始偏移量，len 表示字符个数 |
+  | append(char c)                             | 将参数 c 指定的字符添加到输出流中                            |
+  | append(charSequence esq)                   | 将参数 esq 指定的字符序列添加到输出流中                      |
+  | append(charSequence esq,int start,int end) | 将参数 esq 指定的字符序列的子序列添加到输出流中。其中，start 指定 子序列的第一个字符的索引，end 指定子序列中最后一个字符后面的字符 的索引，也就是说子序列的内容包含 start 索引处的字符，但不包括 end 索引处的字符 |
 
 ### 系统流
 
@@ -1771,8 +1788,6 @@ String imageList = f.list(new ImageFilter());
 
 #### 字节数组流
 
-
-
 #### 文件流
 
 - **输入流**
@@ -1801,6 +1816,13 @@ String imageList = f.list(new ImageFilter());
 
 ### 字符流
 
+#### 字符文件流
 
+- **输入流**
+  - `FileReader(File file)`
+- **输出流**
+  - `FileWriter(File file)`
+  - `FileWeiter(File file, boolean append)`
+  - 文件不存在时回自动生成一个新文件；如果尝试打开制度文件回引发异常
 
 ### 转换流
