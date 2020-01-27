@@ -1791,6 +1791,14 @@ String imageList = f.list(new ImageFilter());
 
   - 如果指定文件不存在，则创建一个新文件；如果已存在，则清除原文件重新写入
 
+  ```java
+  try{
+    FileOutputStream fos1 = new FileOutputStream(new File("_path_"));
+  	FileOutputStream fos1 = new FileOutputStream(new File("_path_"), true);		//第二个参数是boolean append
+  }catch(FileNotFoundException e){
+  }
+  ```
+
 ### 字符流
 
 
