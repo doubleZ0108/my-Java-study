@@ -1825,4 +1825,15 @@ String imageList = f.list(new ImageFilter());
   - `FileWeiter(File file, boolean append)`
   - 文件不存在时回自动生成一个新文件；如果尝试打开制度文件回引发异常
 
+#### 字符缓冲区
+
+- **输入**
+  - 主要用于辅助其他字符输入流，可以先将一批数据读到内存缓冲区，接下来的操作可以直接从缓冲区读取数据，而不需要每次都从数据源读取数据
+  - `BufferedReader(Reader in)`
+  - `BufferedReader(Reader in, int size)`
+- **输出**
+  - 同理，缓冲区写满了后，将缓冲区的数据一次性写到字符输出流
+  - `BufferedWriter(Writer out)`
+  - `BufferedWriter(Writer out, int size)`
+
 ### 转换流
