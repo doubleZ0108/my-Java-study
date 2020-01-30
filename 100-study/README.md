@@ -2065,3 +2065,22 @@ public class RoleTest{
 
 - **作用**：表示该变量可以被本地代码引用
 - **范围**：成员变量
+
+## 自定义注解
+
+```java
+public @interface MyAnnotation{
+  String name() default "MyAnnotation";
+}
+
+public class Test{
+  @MyAnnotation(name="Test")
+  public void display(){}
+}
+```
+
+- 成员变量以无形参的方法形式表示
+- default：默认注解
+- **分类**
+  - 标记注解：没有成员变量的注解
+  - 元数据注解：包含成员变量的注解
