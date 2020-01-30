@@ -1954,3 +1954,15 @@ public class Test{
 }
 ```
 
+## @FunctionalInterface
+
+- **作用**：指定某个接口必须是函数式接口（保证该接口只能包含一个抽象方法）
+- **范围**：只能修饰接口
+
+```java
+@FunctionalInterface
+public interface FunInterface{
+  void test();	//只能有一个抽象方法
+}
+```
+
