@@ -1932,3 +1932,25 @@ class Test{
 }
 ```
 
+## @SafeVarargs
+
+- **作用**：警告泛型类型一致
+- 不适用于非static或非final声明的方法，可用@SuppressWarnings替代
+
+```java
+public class Test{
+  public static void main(String[] args){
+    display(10, 20, 30);
+    
+    display("10", 20, 30);	//参数类型不一致，警告
+  }
+  
+  @SafeVarargs
+  public static <T> void display(T... args){
+    for(T arg : args){
+      //...
+    }
+  }
+}
+```
+
