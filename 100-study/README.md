@@ -1966,3 +1966,102 @@ public interface FunInterface{
 }
 ```
 
+## 元注解
+
+- 对其他注解进行说明的注解
+
+### @Documented
+
+- 被它修饰的注释类会被JavaDoc提取成文档
+
+- 生成**JavaDoc**
+
+  ```shell
+  javac MyDocument.java DocumentTest.java
+  javadoc -d doc MyDocument.java DocumentTest.java
+  ```
+
+```java
+@Documented
+@Target({ElementType.TYPE, ElementType.METHOD})
+public @interface MyDocumented {
+    public String value() default "这是@Document注解";
+}
+```
+
+```java
+public class DocumentedTest {
+    @MyDocumented
+    public String Test(){
+        System.out.println("test for mydocumented");
+        return "test for mydocumented";
+    }
+}
+```
+
+### @Target
+
+- **作用**：指定注解的使用范围
+
+- **属性**：
+
+  - `value`
+
+    | 名称           | 说明                                     |
+    | -------------- | ---------------------------------------- |
+    | CONSTRUCTOR    | 用于构造方法                             |
+    | FIELD          | 用于成员变量（包括枚举常量）             |
+    | LOCAL_VARIABLE | 用于局部变量                             |
+    | METHOD         | 用于方法                                 |
+    | PACKAGE        | 用于包                                   |
+    | PARAMETER      | 用于类型参数（JDK 1.8新增）              |
+    | TYPE           | 用于类、接口（包括注解类型）或 enum 声明 |
+
+```java
+@Target({ElementType.METHOD})
+public @interface MethodTarget{
+}
+
+class Test{
+  @MethodTarget
+  void display(){}
+}
+```
+
+### @Retention
+
+- **作用**：描述注解的生命周期（注解被保留的时间长短）
+- **value**
+  - SOURCE：在源文件中有效（即源文件保留），运行时
+  - CLASS：在 class 文件中有效（即 class 保留），编译时
+  - RUNTIME：在运行时有效（即运行时保留）
+
+### @Inherited
+
+- **作用**：指定该注解可以被继承，某个类使用该注解，则其起勒将自动具有该注解
+
+### @Repeatable
+
+- **作用**：允许在相同的元素中重复注解
+
+```java
+public @interface Roles{
+  Role[] value();
+}
+
+@Repeatable(Roles.class)
+public @interface Role{
+  String roleName();
+}
+
+public class RoleTest{
+  @Role(roleName = "role1")
+  @Role(roleName = "role2")
+  public void test(){}
+}
+```
+
+### @Native
+
+- **作用**：表示该变量可以被本地代码引用
+- **范围**：成员变量
