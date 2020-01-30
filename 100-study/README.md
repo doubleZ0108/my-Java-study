@@ -1866,7 +1866,7 @@ String imageList = f.list(new ImageFilter());
 ## @Override
 
 - **作用**：指定方法重写，强调子类必须重写弗雷方法或实现接口方法，否则会编译错误
-- **只能修饰方法**
+- **范围**：只能修饰方法
 
 ```java
 public class Person{
@@ -1878,4 +1878,20 @@ public class Person{
 ```
 
 ## @Deprecated
+
+- **作用**：表示某个元素已过时，当其他程序使用已过时的元素时，编译器给出警告
+- **范围**：类、接口、成员方法、成员变量
+- 过时的API会被画上删除线
+- **属性**：
+  - `forRemoval`：指定该API在将来是否会被删除
+  - `since`：指定该API从哪个版本被标记为过时
+
+```java
+class Test{
+  @Deprecated(since = "9", forRemoval = true)
+  public void display(){
+    //...
+  }
+}
+```
 
